@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require './lib/bill_split_logic.rb'
 
 class BillSplitter < Sinatra::Base
 
@@ -10,13 +11,13 @@ class BillSplitter < Sinatra::Base
   end
 
   post '/split_bill' do
-    session[:bill_total] = params[:bill_total]
-    session[:people_count] = params[:people_count]
+    session[:bill_total] = params[:bill_total].to_i
+    session[:people_count] = params[:people_count].to_i
     redirect "/split_bill"
   end
 
   get '/split_bill' do
-    "£" + (session[:bill_total].to_i / session[:people_count].to_i  ).to_s
+    "£" + BillSplitterLogic.split_bills(session[:bill_total], session[:people_count]).to_s
   end
 
   # start the server if ruby file executed directly
