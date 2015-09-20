@@ -17,7 +17,8 @@ class BillSplitter < Sinatra::Base
   end
 
   get '/split_bill' do
-    "£" + BillSplitterLogic.split_bills(session[:bill_total], session[:people_count]).to_s
+    @amount = BillSplitterLogic.split_bills(session[:bill_total], session[:people_count]).to_s
+    erb :split_bill
   end
 
   # start the server if ruby file executed directly
