@@ -8,4 +8,5 @@ group :development, :test do
   gem 'capybara'
   gem 'rspec'
   gem 'rspec-sinatra'
+  gem 'pry'
 end
