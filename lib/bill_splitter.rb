@@ -16,7 +16,7 @@ class BillSplitter < Sinatra::Base
   end
 
   get '/split_bill' do
-    "£10"
+    "£" + (session[:bill_total].to_i / session[:people_count].to_i  ).to_s
   end
 
   # start the server if ruby file executed directly
